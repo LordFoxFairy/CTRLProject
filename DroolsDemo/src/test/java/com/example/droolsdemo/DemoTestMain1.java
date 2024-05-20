@@ -152,7 +152,7 @@ public class DemoTestMain1{
         Map<String, Property> variables = new HashMap<>();
         
         // 添加温度属性
-        Property temperature = new Property(20, ">=");
+        Property temperature = new Property("between", true,20, 30); // 范围条件
         variables.put("温度", temperature);
         
         // 添加湿度属性
@@ -163,9 +163,13 @@ public class DemoTestMain1{
         ksession.setGlobal("variables", variables);
         
         // 插入一个 RuleEngineFact 对象，可能会触发规则
-        RuleEngineFact fact1 = new RuleEngineFact("温度1", 25); // 设置温度值为 25
-        
+        RuleEngineFact fact1 = new RuleEngineFact("温度", 125); // 设置温度值为 25
         ksession.insert(fact1);
+        
+        
+        // 插入一个 RuleEngineFact 对象，可能会触发规则
+        RuleEngineFact fact2 = new RuleEngineFact("湿度", 25); // 设置温度值为 25
+        ksession.insert(fact2);
         
         // 执行规则
         ksession.fireAllRules();

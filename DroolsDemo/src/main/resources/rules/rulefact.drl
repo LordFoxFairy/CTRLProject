@@ -8,20 +8,23 @@ global java.util.Map variables;
 rule "Dynamic Rule"
 when
     $fact: RuleEngineFact($name: name, $value: value)
-    $property: Property($name == $fact.name, $threshold: threshold, $operator: operator) from variables.get($name)
-    eval(matchCondition($value, $threshold, $operator))
+    $property: Property($name == $fact.name) from variables.get($name)
+    eval(matchCondition($value, $property))
 then
     System.out.println("规则触发，条件满足，属性名：" + $name + ", 值：" + $value);
 end
 
-function boolean matchCondition(int value, int threshold, String operator) {
-    switch (operator) {
-        case ">=": return value >= threshold;
-        case "<=": return value <= threshold;
-        case ">": return value > threshold;
-        case "<": return value < threshold;
-        case "=": return value == threshold;
-        case "range": return value >= threshold && value <= threshold;
-        default: return false;
+function boolean matchCondition(Number value, Property property) {
+    if (property.isRange()) {
+        return value.doubleValue() >= property.getMin() && value.doubleValue() <= property.getMax();
+    } else {
+        switch (property.getOperator()) {
+            case ">=": return value.doubleValue() >= property.getThreshold();
+            case "<=": return value.doubleValue() <= property.getThreshold();
+            case ">": return value.doubleValue() > property.getThreshold();
+            case "<": return value.doubleValue() < property.getThreshold();
+            case "=": return value.doubleValue() == property.getThreshold();
+            default: return false;
+        }
     }
 }

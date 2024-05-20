@@ -17,8 +17,7 @@ public class Property {
     }
     
     // 另一个构造函数，用于设置阈值、操作符以及范围
-    public Property(int threshold, String operator, boolean range, int min, int max) {
-        this.threshold = threshold;
+    public Property(String operator, boolean range, int min, int max) {
         this.operator = operator;
         this.range = range;
         this.min = min;
