@@ -2,17 +2,20 @@ package com.example.rules
 
 import com.example.droolsdemo.Demo1.entity.RuleEngineFact;
 import com.example.droolsdemo.Demo1.entity.Property;
-
-global java.util.Map variables;
+import java.util.Map;
+import java.util.HashMap;
+//global java.util.Map variables;
 
 rule "Dynamic Rule"
 when
+    $variables: Map() from prepareVariables()
     $fact: RuleEngineFact($name: name, $value: value)
-    $property: Property($name == $fact.name) from variables.get($name)
+    $property: Property($name == $fact.name) from $variables.get($name)
     eval(matchCondition($value, $property))
 then
     System.out.println("规则触发，条件满足，属性名：" + $name + ", 值：" + $value);
 end
+
 
 function boolean matchCondition(Number value, Property property) {
     if (property.isRange()) {
@@ -27,4 +30,19 @@ function boolean matchCondition(Number value, Property property) {
             default: return false;
         }
     }
+}
+
+
+function Map prepareVariables() {
+   // 创建一个存储规则参数的 Map
+   Map<String, Property> variables = new HashMap<>();
+
+   // 添加温度属性
+   Property temperature = new Property("between", true,20, 30); // 范围条件
+   variables.put("温度", temperature);
+
+   // 添加湿度属性
+   Property humidity = new Property(50, "<=");
+   variables.put("湿度", humidity);
+   return variables;
 }

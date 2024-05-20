@@ -148,22 +148,22 @@ public class DemoTestMain1{
     public void test6(){
         KieSession ksession = kieContainer.newKieSession();
         
-        // 创建一个存储规则参数的 Map
-        Map<String, Property> variables = new HashMap<>();
-        
-        // 添加温度属性
-        Property temperature = new Property("between", true,20, 30); // 范围条件
-        variables.put("温度", temperature);
-        
-        // 添加湿度属性
-        Property humidity = new Property(50, "<=");
-        variables.put("湿度", humidity);
-        
-        // 将规则参数传递给规则
-        ksession.setGlobal("variables", variables);
-        
+//        // 创建一个存储规则参数的 Map
+//        Map<String, Property> variables = new HashMap<>();
+//
+//        // 添加温度属性
+//        Property temperature = new Property("between", true,20, 30); // 范围条件
+//        variables.put("温度", temperature);
+//
+//        // 添加湿度属性
+//        Property humidity = new Property(50, "<=");
+//        variables.put("湿度", humidity);
+//
+//        // 将规则参数传递给规则
+//        ksession.setGlobal("variables", variables);
+//
         // 插入一个 RuleEngineFact 对象，可能会触发规则
-        RuleEngineFact fact1 = new RuleEngineFact("温度", 125); // 设置温度值为 25
+        RuleEngineFact fact1 = new RuleEngineFact("温度", 25.0); // 设置温度值为 25
         ksession.insert(fact1);
         
         

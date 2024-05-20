@@ -2,9 +2,9 @@ package com.example.droolsdemo.Demo1.entity;
 
 public class RuleEngineFact {
     private String name;
-    private int value;
+    private Number value;
     
-    public RuleEngineFact(String name, int value) {
+    public RuleEngineFact(String name, Number value) {
         this.name = name;
         this.value = value;
     }
@@ -17,7 +17,7 @@ public class RuleEngineFact {
         this.name = name;
     }
     
-    public int getValue() {
+    public Number getValue() {
         return value;
     }
     
