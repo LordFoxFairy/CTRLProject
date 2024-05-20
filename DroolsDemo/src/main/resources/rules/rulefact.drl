@@ -1,0 +1,27 @@
+package com.example.rules
+
+import com.example.droolsdemo.Demo1.entity.RuleEngineFact;
+import com.example.droolsdemo.Demo1.entity.Property;
+
+global java.util.Map variables;
+
+rule "Dynamic Rule"
+when
+    $fact: RuleEngineFact($name: name, $value: value)
+    $property: Property($name == $fact.name, $threshold: threshold, $operator: operator) from variables.get($name)
+    eval(matchCondition($value, $threshold, $operator))
+then
+    System.out.println("规则触发，条件满足，属性名：" + $name + ", 值：" + $value);
+end
+
+function boolean matchCondition(int value, int threshold, String operator) {
+    switch (operator) {
+        case ">=": return value >= threshold;
+        case "<=": return value <= threshold;
+        case ">": return value > threshold;
+        case "<": return value < threshold;
+        case "=": return value == threshold;
+        case "range": return value >= threshold && value <= threshold;
+        default: return false;
+    }
+}

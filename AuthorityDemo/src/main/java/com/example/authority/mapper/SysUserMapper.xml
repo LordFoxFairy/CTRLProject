@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.authority.mapper.SysUserMapper">
+
+    <!-- 指定对应的数据库表和实体类映射关系 -->
+    <resultMap id="BaseResultMap" type="com.example.authority.entity.SysUser">
+        <id column="id" property="id"/>
+        <result column="account" property="account"/>
+        <result column="user_name" property="userName"/>
+        <result column="password" property="password"/>
+        <result column="last_login_time" property="lastLoginTime"/>
+        <result column="enabled" property="enabled"/>
+        <result column="not_expired" property="notExpired"/>
+        <result column="account_not_locked" property="accountNotLocked"/>
+        <result column="credentials_not_expired" property="credentialsNotExpired"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="create_user" property="createUser"/>
+        <result column="update_user" property="updateUser"/>
+    </resultMap>
+
+</mapper>

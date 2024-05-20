@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/AuthorityDemo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/AutowiredDemo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/AutowiredDemo/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/CronTaskDemo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/DroolsDemo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/NettyDemo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/OauthDemo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/README.md" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/SeataDemo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/StandardDemo/AopDemo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/StandardDemo/AuthDemoOne/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/StandardDemo/DesensitizeDemo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/StandardDemo/ExcelDemo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/StandardDemo/ExceptionHandlingDemo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/StandardDemo/IdempotentDemo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/StandardDemo/IdempotentDemo/src/main/java/com/example/desensitize/utils/IdempotentKeyResolverRegistry.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/StandardDemo/IdempotentDemo/src/main/java/com/example/idempotent/service/impl/ExpressionIdempotentKeyResolver.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/StandardDemo/InterfaceUnifiedCallDemo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/StandardDemo/VerificationDemo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/StandardDemo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/StandardDemo/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

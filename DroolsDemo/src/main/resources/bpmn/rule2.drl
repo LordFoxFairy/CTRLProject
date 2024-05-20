@@ -1,0 +1,45 @@
+package com.example.rules
+
+// 导入你的事实类
+import com.example.droolsdemo.Demo1.entity.Fact;
+
+function boolean isCondition1(Fact fact) {
+    return fact.getAge() > 18;
+}
+function boolean isCondition2(Fact fact) {
+    return fact.getName().contains("胡桃");
+}
+
+// 定义规则 A
+rule "RuleA"
+activation-group "group1"
+salience -1 // 低优先级
+when
+    $fact : Fact()
+    eval(isCondition1($fact))
+then
+    System.out.println("规则A：年龄大于18");
+end
+
+// 定义规则 B
+rule "RuleB"
+activation-group "group1"
+salience -1 // 低优先级
+when
+    $fact : Fact()
+    eval(isCondition2($fact))
+then
+    System.out.println("规则B：名字包含胡桃");
+end
+
+// 后续操作规则 C：要求同时满足规则 A 和规则 B 的条件
+rule "SubsequentOperationRule"
+activation-group "group1"
+salience 1 // 高优先级
+when
+    $fact : Fact()
+    eval(isCondition1($fact))
+    eval(isCondition2($fact))
+then
+    System.out.println("同时满足规则A和规则B，执行后续操作");
+end

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:flowable="http://flowable.org/bpmn"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
+             typeLanguage="http://www.w3.org/2001/XMLSchema"
+             expressionLanguage="http://www.w3.org/1999/XPath"
+             targetNamespace="http://www.flowable.org/processdef">
+    <process id="complexRuleFlow" name="Complex Rule Flow" isExecutable="true">
+        <startEvent id="startEvent1" name="Start" />
+
+        <sequenceFlow id="flow1" sourceRef="startEvent1" targetRef="ruleTask1" />
+
+        <businessRuleTask id="ruleTask1" name="Check Combined" flowable:ruleFlowGroup="combinedCheck" />
+
+        <sequenceFlow id="flow2" sourceRef="ruleTask1" targetRef="exclusiveGateway1" />
+
+        <exclusiveGateway id="exclusiveGateway1" name="Branch" gatewayDirection="Diverging" />
+
+        <sequenceFlow id="flow3" sourceRef="exclusiveGateway1" targetRef="ruleTask2">
+            <conditionExpression xsi:type="tFormalExpression" language="http://www.mvel.org/2.0">Check Age</conditionExpression>
+        </sequenceFlow>
+
+        <sequenceFlow id="flow4" sourceRef="exclusiveGateway1" targetRef="ruleTask3">
+            <conditionExpression xsi:type="tFormalExpression" language="http://www.mvel.org/2.0">Check Name</conditionExpression>
+        </sequenceFlow>
+
+        <businessRuleTask id="ruleTask2" name="Check Age" flowable:ruleFlowGroup="ageCheck" />
+
+        <businessRuleTask id="ruleTask3" name="Check Name" flowable:ruleFlowGroup="nameCheck" />
+
+        <sequenceFlow id="flow5" sourceRef="ruleTask2" targetRef="exclusiveGateway2" />
+
+        <sequenceFlow id="flow6" sourceRef="ruleTask3" targetRef="exclusiveGateway2" />
+
+        <exclusiveGateway id="exclusiveGateway2" name="Join" gatewayDirection="Converging" />
+
+        <sequenceFlow id="flow7" sourceRef="exclusiveGateway2" targetRef="endEvent1" />
+
+        <endEvent id="endEvent1" name="End" />
+    </process>
+
+    <bpmndi:BPMNDiagram id="BPMNDiagram_complexRuleFlow">
+        <bpmndi:BPMNPlane bpmnElement="complexRuleFlow">
+            <bpmndi:BPMNShape id="startEvent1_di" bpmnElement="startEvent1">
+                <omgdc:Bounds x="100" y="100" width="36" height="36" />
+            </bpmndi:BPMNShape>
+
+            <bpmndi:BPMNShape id="ruleTask1_di" bpmnElement="ruleTask1">
+                <omgdc:Bounds x="200" y="80" width="100" height="80" />
+            </bpmndi:BPMNShape>
+
+            <bpmndi:BPMNShape id="exclusiveGateway1_di" bpmnElement="exclusiveGateway1">
+                <omgdc:Bounds x="350" y="100" width="50" height="50" />
+            </bpmndi:BPMNShape>
+
+            <bpmndi:BPMNShape id="ruleTask2_di" bpmnElement="ruleTask2">
+                <omgdc:Bounds x="450" y="50" width="100" height="80" />
+            </bpmndi:BPMNShape>
+
+            <bpmndi:BPMNShape id="ruleTask3_di" bpmnElement="ruleTask3">
+                <omgdc:Bounds x="450" y="150" width="100" height="80" />
+            </bpmndi:BPMNShape>
+
+            <bpmndi:BPMNShape id="exclusiveGateway2_di" bpmnElement="exclusiveGateway2">
+                <omgdc:Bounds x="600" y="100" width="50" height="50" />
+            </bpmndi:BPMNShape>
+
+            <bpmndi:BPMNShape id="endEvent1_di" bpmnElement="endEvent1">
+                <omgdc:Bounds x="750" y="100" width="36" height="36" />
+            </bpmndi:BPMNShape>
+
+            <bpmndi:BPMNEdge id="flow1_di" bpmnElement="flow1">
+                <omgdi:waypoint x="136" y="118" />
+                <omgdi:waypoint x="200" y="118" />
+            </bpmndi:BPMNEdge>
+
+            <bpmndi:BPMNEdge id="flow2_di" bpmnElement="flow2">
+                <omgdi:waypoint x="300" y="118" />
+                <omgdi:waypoint x="350" y="118" />
+            </bpmndi:BPMNEdge>
+
+            <bpmndi:BPMNEdge id="flow3_di" bpmnElement="flow3">
+                <omgdi:waypoint x="400" y="100" />
+                <omgdi:waypoint x="450" y="90" />
+            </bpmndi:BPMNEdge>
+
+            <bpmndi:BPMNEdge id="flow4_di" bpmnElement="flow4">
+                <omgdi:waypoint x="400" y="150" />
+                <omgdi:waypoint x="450" y="170" />
+            </bpmndi:BPMNEdge>
+
+            <bpmndi:BPMNEdge id="flow5_di" bpmnElement="flow5">
+                <omgdi:waypoint x="550" y="90" />
+                <omgdi:waypoint x="600" y="100" />
+            </bpmndi:BPMNEdge>
+
+            <bpmndi:BPMNEdge id="flow6_di" bpmnElement="flow6">
+                <omgdi:waypoint x="550" y="170" />
+                <omgdi:waypoint x="600" y="150" />
+            </bpmndi:BPMNEdge>
+
+            <bpmndi:BPMNEdge id="flow7_di" bpmnElement="flow7">
+                <omgdi:waypoint x="650" y="125" />
+                <omgdi:waypoint x="750" y="118" />
+            </bpmndi:BPMNEdge>
+        </bpmndi:BPMNPlane>
+    </bpmndi:BPMNDiagram>
+</definitions>

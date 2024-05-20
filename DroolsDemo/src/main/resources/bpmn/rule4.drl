@@ -1,0 +1,53 @@
+package rules;
+
+import com.example.droolsdemo.Demo1.sample.ScoreRule;
+
+//执行之后不重复执行
+no-loop
+
+//规则名
+rule "no-pass"//没过
+    //规则组名
+    ruleflow-group "score"
+    when
+        s: ScoreRule( score<60 )
+    then
+        s.setDesc( "no-pass" );
+        update( s );
+end
+
+rule "pass"//及格
+    ruleflow-group "score"
+    when
+        s: ScoreRule( score>=60&&score<70 )
+    then
+        s.setDesc( "pass" );
+        update( s );
+end
+
+rule "good"//良好
+    ruleflow-group "score"
+    when
+        s: ScoreRule( score>=70&&score<90 )
+    then
+        s.setDesc( "good" );
+        update( s );
+end
+
+rule "excellent"//优秀
+    ruleflow-group "score"
+    when
+        s: ScoreRule( score>=90&&score<100 )
+    then
+        s.setDesc( "excellent" );
+        update( s );
+end
+
+rule "perfect"//完美
+    ruleflow-group "score"
+    when
+        s: ScoreRule( score==100 )
+    then
+        s.setDesc( "perfect" );
+        update( s );
+end

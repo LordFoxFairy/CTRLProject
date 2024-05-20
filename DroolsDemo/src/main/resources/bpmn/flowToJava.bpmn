@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:flowable="http://flowable.org/bpmn"
+             typeLanguage="http://www.w3.org/2001/XMLSchema"
+             expressionLanguage="http://www.w3.org/1999/XPath"
+             targetNamespace="http://www.flowable.org/processdef">
+  <process id="complexRuleFlow" name="Complex Rule Flow" isExecutable="true">
+    <startEvent id="startEvent" name="Start"/>
+    <sequenceFlow id="flow1" sourceRef="startEvent" targetRef="checkCombined"/>
+    <businessRuleTask id="checkCombined" name="Check Combined">
+      <extensionElements>
+        <flowable:ruleFlowGroup>combinedCheck</flowable:ruleFlowGroup>
+      </extensionElements>
+    </businessRuleTask>
+    <sequenceFlow id="flow2" sourceRef="checkCombined" targetRef="branch"/>
+    <exclusiveGateway id="branch" name="Branch" gatewayDirection="Diverging"/>
+    <sequenceFlow id="flow3" sourceRef="branch" targetRef="checkAge">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${fact.age > 18}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow4" sourceRef="branch" targetRef="checkName">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${fact.name contains '胡桃'}]]></conditionExpression>
+    </sequenceFlow>
+    <businessRuleTask id="checkAge" name="Check Age">
+      <extensionElements>
+        <flowable:ruleFlowGroup>ageCheck</flowable:ruleFlowGroup>
+      </extensionElements>
+    </businessRuleTask>
+    <sequenceFlow id="flow5" sourceRef="checkAge" targetRef="join"/>
+    <businessRuleTask id="checkName" name="Check Name">
+      <extensionElements>
+        <flowable:ruleFlowGroup>nameCheck</flowable:ruleFlowGroup>
+      </extensionElements>
+    </businessRuleTask>
+    <sequenceFlow id="flow6" sourceRef="checkName" targetRef="join"/>
+    <parallelGateway id="join" name="Join" gatewayDirection="Converging"/>
+    <sequenceFlow id="flow7" sourceRef="join" targetRef="endEvent"/>
+    <endEvent id="endEvent" name="End"/>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_complexRuleFlow">
+    <bpmndi:BPMNPlane bpmnElement="complexRuleFlow" id="BPMNPlane_complexRuleFlow">
+      <bpmndi:BPMNShape id="shape_startEvent" bpmnElement="startEvent">
+        <omgdc:Bounds x="100" y="100" width="30" height="30"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_checkCombined" bpmnElement="checkCombined">
+        <omgdc:Bounds x="200" y="100" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_flow1" bpmnElement="flow1">
+        <omgdi:waypoint x="130" y="115"/>
+        <omgdi:waypoint x="200" y="115"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape_branch" bpmnElement="branch">
+        <omgdc:Bounds x="350" y="100" width="40" height="40"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_flow2" bpmnElement="flow2">
+        <omgdi:waypoint x="300" y="115"/>
+        <omgdi:waypoint x="350" y="115"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape_checkAge" bpmnElement="checkAge">
+        <omgdc:Bounds x="450" y="50" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_flow3" bpmnElement="flow3">
+        <omgdi:waypoint x="390" y="120"/>
+        <omgdi:waypoint x="450" y="90"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape_checkName" bpmnElement="checkName">
+        <omgdc:Bounds x="450" y="150" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_flow4" bpmnElement="flow4">
+        <omgdi:waypoint x="
+390" y="130"/>
+        <omgdi:waypoint x="450" y="190"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape_join" bpmnElement="join">
+        <omgdc:Bounds x="600" y="100" width="40" height="40"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_flow5" bpmnElement="flow5">
+        <omgdi:waypoint x="550" y="90"/>
+        <omgdi:waypoint x="600" y="120"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow6" bpmnElement="flow6">
+        <omgdi:waypoint x="550" y="190"/>
+        <omgdi:waypoint x="600" y="130"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape_endEvent" bpmnElement="endEvent">
+        <omgdc:Bounds x="700" y="100" width="30" height="30"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_flow7" bpmnElement="flow7">
+        <omgdi:waypoint x="640" y="120"/>
+        <omgdi:waypoint x="700" y="115"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

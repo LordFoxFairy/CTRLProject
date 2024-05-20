@@ -1,0 +1,55 @@
+
+
+spring:
+  application:
+    name: seata-server-application
+  datasource:
+    url: jdbc:mysql://192.168.1.107:31746/seata?useUnicode=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: GZvlvASxBn
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.1.107:8848 # Nacos作为配置中心地址
+        group: SEATA_GROUP
+        namespace: 2349000a-eff1-4ed3-abdc-95c49d40f7cc # 命名空间ID
+        username: nacos
+        password: nacos
+      config:
+        server-addr: 192.168.1.107:8848 # Nacos作为配置中心地址
+        file-extension: yaml # 指定yaml格式的位置
+        group: SEATA_GROUP
+        namespace: 2349000a-eff1-4ed3-abdc-95c49d40f7cc # 命名空间ID
+        import-check:
+          enabled: false
+        username: nacos
+        password: nacos
+
+
+seata:
+  enable-auto-data-source-proxy: false
+  enabled: true
+  application-id: ${spring.application.name}
+  # 事务组的名称，对应service.vgroupMapping.default_tx_group=xxx中配置的default_tx_group
+  tx-service-group: default_tx_group
+  # 配置事务组与集群的对应关系
+  service:
+    vgroup-mapping:
+      # default_tx_group为事务组的名称，default为集群名称(与registry.conf中的一致)
+      default_tx_group: cluster
+    disable-global-transaction: false
+  registry:
+    type: nacos
+    nacos:
+      application: seata-tc-server
+      server-addr: 192.168.1.107:8848
+      group: SEATA_GROUP
+      namespace: 2349000a-eff1-4ed3-abdc-95c49d40f7cc
+      username: nacos
+      password: nacos
+      # registry.conf中，配置cluster名称
+      cluster: cluster
+  data-source-proxy-mode: AT
+server:
+  port: 8081

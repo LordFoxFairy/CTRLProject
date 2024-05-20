@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="CronTaskDemo" />
+        <module name="AutowiredDemo" />
+        <module name="ExceptionHandlingDemo" />
+        <module name="ExcelDemo" />
+        <module name="DroolsDemo" />
+        <module name="AopDemo" />
+        <module name="AuthorityDemo" />
+        <module name="OauthDemo" />
+        <module name="DesensitizeDemo" />
+        <module name="VerificationDemo" />
+        <module name="SeataDemo" />
+        <module name="InterfaceUnifiedCallDemo" />
+        <module name="IdempotentDemo" />
+        <module name="NettyDemo" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="AuthDemoOne" target="1.8" />
+      <module name="Demo1" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="AopDemo" options="-parameters" />
+      <module name="AuthDemoOne" options="-parameters" />
+      <module name="AuthorityDemo" options="-parameters" />
+      <module name="AutowiredDemo" options="-parameters" />
+      <module name="CTRLProject" options="" />
+      <module name="CronTaskDemo" options="-parameters" />
+      <module name="Demo1" options="-parameters" />
+      <module name="DesensitizeDemo" options="-parameters" />
+      <module name="DroolsDemo" options="-parameters" />
+      <module name="ExcelDemo" options="-parameters" />
+      <module name="ExceptionHandlingDemo" options="-parameters" />
+      <module name="IdempotentDemo" options="-parameters" />
+      <module name="InterfaceUnifiedCallDemo" options="-parameters" />
+      <module name="NettyDemo" options="-parameters" />
+      <module name="OauthDemo" options="-parameters" />
+      <module name="SeataDemo" options="-parameters" />
+      <module name="StandardDemo" options="" />
+      <module name="VerificationDemo" options="-parameters" />
+    </option>
+  </component>
+</project>

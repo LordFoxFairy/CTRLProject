@@ -1,0 +1,29 @@
+
+import com.example.droolsdemo.Demo1.entity.Fact;
+
+rule "Check Combined"
+salience 1 // 低优先级
+    ruleflow-group "combinedCheck"
+when
+    $fact : Fact(age > 18 && name contains "胡桃")
+then
+    System.out.println("年龄大于18且名字包含胡桃");
+end
+
+rule "Check Age"
+salience -1 // 低优先级
+    ruleflow-group "age-check-group"
+when
+    $fact : Fact(age > 18)
+then
+    System.out.println("年龄大于18");
+end
+
+rule "Check Name"
+salience -1 // 低优先级
+    ruleflow-group "nameCheck"
+when
+    $fact : Fact(name contains "胡桃")
+then
+    System.out.println("名字包含胡桃");
+end
