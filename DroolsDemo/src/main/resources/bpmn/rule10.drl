@@ -1,0 +1,29 @@
+//package com.example.rules;
+//
+//import com.example.rules.Person;
+//import com.example.utils.AgeUtils;
+//
+//function boolean isAdult(int age) {
+//    return age >= 18;
+//}
+//
+//function int calculateRetirementYear(int birthYear, int retirementAge) {
+//    int currentYear = java.time.LocalDate.now().getYear();
+//    return birthYear + retirementAge;
+//}
+//
+//rule "CheckIfAdult"
+//when
+//    $person : Person(age > 0)
+//    eval(AgeUtils.isAdult($person.getAge()))
+//then
+//    System.out.println("Person " + $person.getName() + " is an adult.");
+//end
+//
+//rule "CalculateRetirementYear"
+//when
+//    $person : Person(birthYear > 0, retirementAge > 0)
+//then
+//    int retirementYear = calculateRetirementYear($person.getBirthYear(), $person.getRetirementAge());
+//    System.out.println("Person " + $person.getName() + " will retire in " + retirementYear);
+//end

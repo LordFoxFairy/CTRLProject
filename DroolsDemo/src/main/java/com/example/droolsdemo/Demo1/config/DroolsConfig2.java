@@ -2,9 +2,15 @@ package com.example.droolsdemo.Demo1.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.kie.api.KieBase;
+import org.kie.api.KieBaseConfiguration;
 import org.kie.api.KieServices;
+import org.kie.api.conf.EventProcessingOption;
+import org.kie.api.conf.KieBaseMutabilityOption;
+import org.kie.api.conf.KieBaseOption;
+import org.kie.api.conf.KieBaseOptionsConfiguration;
 import org.kie.api.io.ResourceType;
 import org.kie.api.runtime.KieContainer;
+import org.kie.api.runtime.conf.ClockTypeOption;
 import org.kie.internal.io.ResourceFactory;
 import org.kie.internal.utils.KieHelper;
 import org.springframework.context.annotation.Bean;
@@ -36,6 +42,9 @@ public class DroolsConfig2 {
         
         KieHelper helper = new KieHelper();
         
+        KieBaseConfiguration config = helper.ks.newKieBaseConfiguration();
+        config.setOption(EventProcessingOption.STREAM);
+        
         for (Resource file : getRuleFiles()) {
             String fileName = file.getFilename();
             if (fileName != null) {
@@ -49,12 +58,16 @@ public class DroolsConfig2 {
                 }
             }
         }
+        
         return helper.getKieContainer();
     }
     
     @Bean
     public KieBase kieBase() throws IOException {
-        return kieContainer().getKieBase();
+        KieHelper helper = new KieHelper();
+        KieBaseConfiguration config = helper.ks.newKieBaseConfiguration();
+        config.setOption(EventProcessingOption.STREAM);
+        return kieContainer().newKieBase(config);
     }
     
 }

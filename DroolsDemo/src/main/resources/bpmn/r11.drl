@@ -1,0 +1,28 @@
+// user-rules.drl
+package com.example.rules;
+
+import java.util.List;
+import com.example.model.UserEvent;
+
+declare UserEvent
+    @role(event)
+    @timestamp(eventTime)
+    name : String
+    eventTime : Long
+end
+
+rule "User Activity in Session Window"
+when
+    $events : List() from collect(
+        UserEvent() over window:time(12m)
+    )
+then
+    System.out.println("User activity in the last session: " + $events.size());
+    for (Object event : $events) {
+        UserEvent userEvent = (UserEvent) event;
+        System.out.println("Event: " + userEvent.getName() + ", Arrival Time: " + userEvent.getEventTime());
+    }
+end
+
+
+

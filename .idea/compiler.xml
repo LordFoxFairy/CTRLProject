@@ -13,6 +13,7 @@
         <module name="ExcelDemo" />
         <module name="DroolsDemo" />
         <module name="AopDemo" />
+        <module name="FlowableDemo" />
         <module name="AuthorityDemo" />
         <module name="OauthDemo" />
         <module name="DesensitizeDemo" />
@@ -41,6 +42,7 @@
       <module name="DroolsDemo" options="-parameters" />
       <module name="ExcelDemo" options="-parameters" />
       <module name="ExceptionHandlingDemo" options="-parameters" />
+      <module name="FlowableDemo" options="-parameters" />
       <module name="IdempotentDemo" options="-parameters" />
       <module name="InterfaceUnifiedCallDemo" options="-parameters" />
       <module name="NettyDemo" options="-parameters" />

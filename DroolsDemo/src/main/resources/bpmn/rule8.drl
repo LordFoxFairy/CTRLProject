@@ -1,0 +1,17 @@
+package com.example.rules;
+
+import java.time.LocalDate;
+import com.example.rules.Person;
+
+function int calculateRetirementYear(int birthYear, int retirementAge) {
+    int currentYear = LocalDate.now().getYear();
+    return birthYear + retirementAge;
+}
+
+rule "CalculateRetirementYear"
+when
+    $person : Person(birthYear > 0, retirementAge > 0)
+then
+    int retirementYear = calculateRetirementYear($person.getBirthYear(), $person.getRetirementAge());
+    System.out.println("Person " + $person.getName() + " will retire in " + retirementYear);
+end

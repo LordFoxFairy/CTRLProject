@@ -1,0 +1,15 @@
+package com.example.rules;
+
+import com.example.rules.Person;
+
+function boolean isAdult(int age) {
+    return age >= 18;
+}
+
+rule "CheckIfAdult"
+when
+    $person : Person(age > 0)
+    eval(isAdult($person.getAge()))
+then
+    System.out.println("Person " + $person.getName() + " is an adult.");
+end

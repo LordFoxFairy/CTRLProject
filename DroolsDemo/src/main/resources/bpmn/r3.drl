@@ -1,0 +1,39 @@
+import com.example.model.Item;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
+rule "rule1"
+when
+    // 价格大于550的商品
+    $item: Item(price > 550)
+then
+    modify($item) {
+        setPrice($item.getPrice().multiply(BigDecimal.valueOf(0.8)).setScale(2, RoundingMode.HALF_UP));
+    }
+    // 打印更新后的价格
+    System.out.println("Price after rule1: " + $item.getPrice());
+end
+
+rule "rule2"
+when
+    // 价格大于500的商品
+    $item: Item(price > 400)
+then
+    modify($item) {
+        setPrice($item.getPrice().multiply(BigDecimal.valueOf(0.8)).setScale(2, RoundingMode.HALF_UP));
+    }
+    // 打印更新后的价格
+    System.out.println("Price after rule2: " + $item.getPrice());
+end
+
+rule "rule3"
+when
+    // 价格大于100的商品
+    $item: Item(price > 100)
+then
+    modify($item) {
+        setPrice($item.getPrice().multiply(BigDecimal.valueOf(0.1)).setScale(2, RoundingMode.HALF_UP));
+    }
+    // 打印更新后的价格
+    System.out.println("Price after rule3: " + $item.getPrice());
+end

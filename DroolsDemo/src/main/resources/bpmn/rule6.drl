@@ -1,0 +1,15 @@
+import java.util.List;
+import com.example.droolsdemo.Demo1.entity.Person;
+
+
+//不带参数的查询
+//当前query用于查询Working Memory中age>10的Person对象
+query "query_1"
+    $person:Person(age > 10)
+end
+
+//带有参数的查询
+//当前query用于查询Working Memory中age>10同时name需要和传递的参数name相同的Person对象
+query "query_2"(String args)
+    $person:Person(age > 20 && name == args)
+end

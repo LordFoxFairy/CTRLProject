@@ -1,0 +1,12 @@
+package com.example.rules
+
+import com.example.model.Item
+
+rule "Extended Discount Rule" extends "Base Discount Rule"
+when
+    $anotherItem : Item(type == "Electronics")
+then
+    modify($anotherItem) {
+        setDiscount(15)
+    }
+end

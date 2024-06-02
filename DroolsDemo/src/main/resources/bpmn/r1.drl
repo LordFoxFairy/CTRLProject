@@ -1,0 +1,23 @@
+//package com.example.rules
+//
+//import com.example.model.Item;
+//import java.util.List;
+//
+//rule "Calculate Total Price"
+//when
+//    $items : List(size > 0) from collect( Item() )
+//    $totalPrice : Double() from accumulate (Item($price : price) from $items, sum($price))
+//then
+//    System.out.println("Total Price: " + $totalPrice);
+//
+//    // 将总价作为新事实插入工作内存
+//    insert($totalPrice);
+//end
+//
+//rule "Apply Discount"
+//when
+//    $totalPrice : Double(this > 100)
+//then
+//    System.out.println("Applying discount for total price: " + $totalPrice);
+//    // 在此规则中，可以根据总价对购物车中的商品应用折扣
+//end

@@ -1,0 +1,20 @@
+package com.example.rules;
+
+import com.example.rules.Person;
+import static com.example.utils.AgeUtils;
+
+rule "CheckIfAdult"
+when
+    $person : Person(age > 0)
+    eval(AgeUtils.isAdult($person.getAge()))
+then
+    System.out.println("Person " + $person.getName() + " is an adult.");
+end
+
+rule "CalculateRetirementYear"
+when
+    $person : Person(birthYear > 0, retirementAge > 0)
+then
+    int retirementYear = AgeUtils.calculateRetirementYear($person.getBirthYear(), $person.getRetirementAge());
+    System.out.println("Person " + $person.getName() + " will retire in " + retirementYear);
+end

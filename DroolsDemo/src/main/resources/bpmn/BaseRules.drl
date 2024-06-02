@@ -1,0 +1,12 @@
+package com.example.rules
+
+import com.example.model.Item;
+
+rule "Base Discount Rule"
+when
+    $item : Item(price > 100)
+then
+    modify($item) {
+        setDiscount(10)
+    }
+end

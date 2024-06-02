@@ -1,0 +1,34 @@
+import com.example.model.Item;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
+
+rule "rule1"
+when
+    // 从事实中获取商品列表
+    $item: Item($item.getPrice() > 550)
+then
+     $item.setPrice($item.getPrice().multiply(BigDecimal.valueOf(0.9)));
+     update($item)
+     System.out.println("Price：" + $item.getPrice());
+end
+
+
+rule "rule2"
+when
+    // 从事实中获取商品列表
+    $item: Item($item.getPrice() > 500)
+then
+     $item.setPrice($item.getPrice().multiply(BigDecimal.valueOf(0.8)));
+     update($item)
+     System.out.println("Price：" + $item.getPrice());
+end
+
+rule "rule3"
+when
+    // 从事实中获取商品列表
+    $item: Item($item.getPrice() > 100)
+then
+     $item.setPrice($item.getPrice().multiply(BigDecimal.valueOf(0.1)));
+     System.out.println("Price：" + $item.getPrice());
+end
