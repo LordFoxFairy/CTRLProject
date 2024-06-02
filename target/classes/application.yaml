@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: FlowableDemo
+  datasource:
+    url: jdbc:mysql://192.168.1.107:31746/drools?useUnicode=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: GZvlvASxBn
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+flowable:
+  # 设置了true，确保在JDBC参数连接的数据库中，数据库表结构不存在时，会创建相应的表结构。
+  database-schema-update: false
+  #关闭定时任务JOB
+  async-executor-activate: false

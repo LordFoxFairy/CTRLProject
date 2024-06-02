@@ -1,0 +1,73 @@
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:flowable="http://flowable.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.flowable.org/processdef" exporter="Flowable Open Source Modeler" exporterVersion="6.8.0">
+  <signal id="approvalSignal" name="approvalSignal" flowable:scope="global"/>
+  <process id="LeaveProcessEventGateway" name="请假流程-事件网关" isExecutable="true">
+    <startEvent id="startEvent" flowable:formFieldValidation="true"/>
+    <eventBasedGateway id="eventGateway" name="事件网关"/>
+    <intermediateCatchEvent id="catchEvent1" name="等待批准">
+      <timerEventDefinition>
+        <timeDuration>PT1H</timeDuration>
+      </timerEventDefinition>
+    </intermediateCatchEvent>
+    <intermediateCatchEvent id="catchEvent2" name="等待信号">
+      <signalEventDefinition signalRef="approvalSignal"/>
+    </intermediateCatchEvent>
+    <sequenceFlow id="flow3" sourceRef="eventGateway" targetRef="catchEvent2"/>
+    <endEvent id="endEvent" name="结束"/>
+    <sequenceFlow id="flow2" sourceRef="eventGateway" targetRef="catchEvent1"/>
+    <sequenceFlow id="flow5" sourceRef="catchEvent2" targetRef="endEvent"/>
+    <userTask id="sid-87062453-B882-45C3-8EB2-8D493CF5F9CC" name="提交请假申请" flowable:formFieldValidation="true"/>
+    <sequenceFlow id="flow1" sourceRef="startEvent" targetRef="sid-87062453-B882-45C3-8EB2-8D493CF5F9CC"/>
+    <sequenceFlow id="sid-A4B8B1B6-D695-4D77-AF1F-EFDEB432E206" sourceRef="sid-87062453-B882-45C3-8EB2-8D493CF5F9CC" targetRef="eventGateway"/>
+    <sequenceFlow id="flow4" sourceRef="catchEvent1" targetRef="endEvent"/>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_LeaveProcessEventGateway">
+    <bpmndi:BPMNPlane bpmnElement="LeaveProcessEventGateway" id="BPMNPlane_LeaveProcessEventGateway">
+      <bpmndi:BPMNShape bpmnElement="startEvent" id="BPMNShape_startEvent">
+        <omgdc:Bounds height="30.0" width="30.0" x="60.0" y="185.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="eventGateway" id="BPMNShape_eventGateway">
+        <omgdc:Bounds height="40.0" width="40.0" x="310.0" y="180.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="catchEvent1" id="BPMNShape_catchEvent1">
+        <omgdc:Bounds height="31.0" width="31.0" x="405.0" y="120.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="catchEvent2" id="BPMNShape_catchEvent2">
+        <omgdc:Bounds height="30.0" width="30.0" x="405.5" y="270.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endEvent" id="BPMNShape_endEvent">
+        <omgdc:Bounds height="28.0" width="28.0" x="570.0" y="210.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-87062453-B882-45C3-8EB2-8D493CF5F9CC" id="BPMNShape_sid-87062453-B882-45C3-8EB2-8D493CF5F9CC">
+        <omgdc:Bounds height="80.0" width="100.0" x="165.0" y="160.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1" flowable:sourceDockerX="15.0" flowable:sourceDockerY="15.0" flowable:targetDockerX="1.0" flowable:targetDockerY="40.0">
+        <omgdi:waypoint x="89.94999779398906" y="200.0"/>
+        <omgdi:waypoint x="165.0" y="200.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2" flowable:sourceDockerX="20.0" flowable:sourceDockerY="20.0" flowable:targetDockerX="15.500000000000002" flowable:targetDockerY="15.500000000000002">
+        <omgdi:waypoint x="330.0" y="180.0"/>
+        <omgdi:waypoint x="330.0" y="135.5"/>
+        <omgdi:waypoint x="405.0" y="135.5"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3" flowable:sourceDockerX="20.0" flowable:sourceDockerY="20.0" flowable:targetDockerX="15.0" flowable:targetDockerY="15.0">
+        <omgdi:waypoint x="330.0" y="219.9382784958872"/>
+        <omgdi:waypoint x="330.0" y="285.0"/>
+        <omgdi:waypoint x="405.5" y="285.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4" flowable:sourceDockerX="16.0" flowable:sourceDockerY="16.0" flowable:targetDockerX="14.0" flowable:targetDockerY="14.0">
+        <omgdi:waypoint x="436.949999266017" y="136.0"/>
+        <omgdi:waypoint x="584.0" y="136.0"/>
+        <omgdi:waypoint x="584.0" y="210.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5" flowable:sourceDockerX="15.0" flowable:sourceDockerY="15.0" flowable:targetDockerX="14.0" flowable:targetDockerY="14.0">
+        <omgdi:waypoint x="435.44999931629184" y="285.0"/>
+        <omgdi:waypoint x="584.0" y="285.0"/>
+        <omgdi:waypoint x="584.0" y="237.94994773852034"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-A4B8B1B6-D695-4D77-AF1F-EFDEB432E206" id="BPMNEdge_sid-A4B8B1B6-D695-4D77-AF1F-EFDEB432E206" flowable:sourceDockerX="50.0" flowable:sourceDockerY="40.0" flowable:targetDockerX="20.0" flowable:targetDockerY="20.0">
+        <omgdi:waypoint x="264.95000000000005" y="200.0"/>
+        <omgdi:waypoint x="310.0" y="200.0"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
