@@ -1,0 +1,27 @@
+
+
+rabbitmq:
+  instances:
+    instance1:
+      host: 192.168.1.103
+      port: 30672
+      username: guest
+      password: guest
+      virtualHost: /vhost1
+      exchange: exchange1
+      routingKey: routingKey1
+      type: topic
+      queueName: queue1
+    instance2:
+      host: 192.168.1.103
+      port: 30672
+      username: guest
+      password: guest
+      virtualHost: /vhost2
+      exchange: exchange2
+      routingKey: routingKey2
+      type: direct
+      queueName: queue2
+
+server:
+  port: 8080
